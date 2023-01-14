@@ -20,6 +20,7 @@ dependencies {
     compileOnly group: 'javax.el', name: 'javax.el-api', version: '3.0.0'
     compileOnly group: 'org.glassfish', name: 'javax.el', version: '3.0.0'
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
 
 }
 
