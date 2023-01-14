@@ -1,8 +1,8 @@
 package transportcompany.entity.transport;
 
 import java.time.LocalDate;
-import javax.persistence.*;
 
+import jakarta.persistence.*;
 import lombok.*;
 import transportcompany.entity.EntityWithId;
 

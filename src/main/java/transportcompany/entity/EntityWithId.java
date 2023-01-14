@@ -1,8 +1,11 @@
 package transportcompany.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import lombok.*;
 
 @MappedSuperclass
+@NoArgsConstructor
+@AllArgsConstructor
 public abstract class EntityWithId {
 
     @Id

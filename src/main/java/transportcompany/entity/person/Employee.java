@@ -2,8 +2,8 @@ package transportcompany.entity.person;
 
 import java.time.LocalDate;
 import java.util.List;
-import javax.persistence.*;
 
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Formula;
 import transportcompany.entity.Company;
@@ -31,7 +31,6 @@ public class Employee extends Person {
     private Company company;
 
     @ManyToMany(mappedBy = "employees")
-    @JoinTable(name = "employee_qualifications")
     private List<Qualification> qualifications;
 
 }

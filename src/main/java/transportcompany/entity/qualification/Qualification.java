@@ -1,16 +1,16 @@
 package transportcompany.entity.qualification;
 
 import java.util.Set;
-import javax.persistence.*;
 
+import jakarta.persistence.*;
 import lombok.*;
 import transportcompany.entity.EntityWithId;
 import transportcompany.entity.person.Employee;
 
+@Entity
+@Table(name = "qualifications")
 @Getter
 @Setter
-@NoArgsConstructor
-@RequiredArgsConstructor
 @ToString
 public class Qualification extends EntityWithId {
 
@@ -20,5 +20,13 @@ public class Qualification extends EntityWithId {
 
     @ManyToMany
     private Set<Employee> employees;
+
+    public Qualification() {
+    }
+
+    public Qualification(QualificationType qualificationType, Set<Employee> employees) {
+        this.qualificationType = qualificationType;
+        this.employees = employees;
+    }
 
 }

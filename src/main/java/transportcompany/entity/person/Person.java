@@ -1,10 +1,14 @@
 package transportcompany.entity.person;
 
-import javax.persistence.MappedSuperclass;
-
+import jakarta.persistence.*;
 import transportcompany.entity.EntityWithId;
 
-@MappedSuperclass
+import static jakarta.persistence.DiscriminatorType.STRING;
+
+@Entity
+@Inheritance
+@DiscriminatorColumn(name="DISC", discriminatorType=STRING, length=20)
+@Table(name = "people")
 public abstract class Person extends EntityWithId {
 
 }
