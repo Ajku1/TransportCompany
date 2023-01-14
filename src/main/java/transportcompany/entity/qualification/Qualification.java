@@ -11,6 +11,8 @@ import transportcompany.entity.person.Employee;
 @Table(name = "qualifications")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
 public class Qualification extends EntityWithId {
 
@@ -20,13 +22,5 @@ public class Qualification extends EntityWithId {
 
     @ManyToMany
     private Set<Employee> employees;
-
-    public Qualification() {
-    }
-
-    public Qualification(QualificationType qualificationType, Set<Employee> employees) {
-        this.qualificationType = qualificationType;
-        this.employees = employees;
-    }
 
 }

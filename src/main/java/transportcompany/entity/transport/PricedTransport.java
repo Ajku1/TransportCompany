@@ -9,7 +9,6 @@ import transportcompany.entity.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@RequiredArgsConstructor
 @ToString
 public class PricedTransport extends EntityWithId {
 

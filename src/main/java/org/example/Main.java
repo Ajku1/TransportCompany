@@ -1,20 +1,31 @@
 package org.example;
 
-import java.util.*;
+import java.time.LocalDate;
+import java.util.List;
 
-import transportcompany.dao.*;
+import org.hibernate.Session;
+import transportcompany.configuration.SessionFactoryUtil;
+import transportcompany.dao.CompanyDAO;
 import transportcompany.entity.Company;
-import transportcompany.entity.qualification.*;
+import transportcompany.entity.person.Employee;
 
 public class Main {
+
     public static void main(String[] args) {
 
-        // Company company = new Company("NBU");
-        // CompanyDAO.saveCompany(company);
-        // System.out.println(company);
+        // 1. Add transport company
+        Company company = new Company("NBU");
+        CompanyDAO.saveCompany(company);
+        System.out.println(company);
 
-        Qualification qualification = new Qualification(QualificationType.SPECIAL_CARGO, Set.of());
-        QualificationDAO.saveQualification(qualification);
-        System.out.println(qualification);
+        // 1. Edit transport company
+        company.setName("Updated Company Name");
+        CompanyDAO.updateCompany(company);
+        System.out.println(company);
+
+        // 1. Delete transport company
+        CompanyDAO.deleteCompanyByName(company.getName());
+        System.out.println(CompanyDAO.doesCompanyExistByName(company.getName()));
     }
+
 }

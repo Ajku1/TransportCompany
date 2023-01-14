@@ -5,7 +5,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import transportcompany.entity.Company;
-import transportcompany.entity.person.Employee;
+import transportcompany.entity.person.*;
 import transportcompany.entity.qualification.Qualification;
 import transportcompany.entity.transport.*;
 import transportcompany.entity.vehicle.*;
@@ -15,10 +15,11 @@ public class SessionFactoryUtil {
     private static SessionFactory sessionFactory;
 
     public static SessionFactory getSessionFactory() {
-        if (sessionFactory == null) {
+        if (sessionFactory == null || sessionFactory.isClosed()) {
             Configuration configuration = new Configuration();
             configuration.addAnnotatedClass(Company.class);
             configuration.addAnnotatedClass(Qualification.class);
+            configuration.addAnnotatedClass(Client.class);
             configuration.addAnnotatedClass(Employee.class);
             configuration.addAnnotatedClass(Transport.class);
             configuration.addAnnotatedClass(PricedTransport.class);
@@ -33,6 +34,10 @@ public class SessionFactoryUtil {
         }
 
         return sessionFactory;
+    }
+
+    public static void closeSessionFactory() {
+        sessionFactory.close();
     }
 
 }

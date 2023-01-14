@@ -11,7 +11,7 @@ import transportcompany.entity.EntityWithId;
 @Getter
 @Setter
 @NoArgsConstructor
-@RequiredArgsConstructor
+@AllArgsConstructor
 @ToString
 public class Transport extends EntityWithId {
 

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @MappedSuperclass
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public abstract class EntityWithId {
