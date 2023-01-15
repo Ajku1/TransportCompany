@@ -4,62 +4,62 @@ import java.util.List;
 
 import org.hibernate.*;
 import transportcompany.configuration.SessionFactoryUtil;
-import transportcompany.entity.Company;
+import transportcompany.entity.person.Client;
 
-public class CompanyDAO {
+public class ClientDAO {
 
-    public static void saveCompany(Company company) {
+    public static void saveClient(Client client) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.persist(company);
+            session.persist(client);
             transaction.commit();
         }
     }
 
-    public static void updateCompany(Company company) {
+    public static void updateClient(Client client) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.merge(company);
+            session.merge(client);
             transaction.commit();
         }
     }
 
-    public static Company getCompanyById(long id) {
+    public static Client getClientById(long id) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
-            return session.createQuery("select c from Company c where c.id = :id", Company.class)
+            return session.createQuery("select c from Client c where c.id = :id", Client.class)
                           .setParameter("id", id)
                           .getSingleResult();
         }
     }
 
-    public static Company getCompanyByName(String name) {
+    public static Client getClientByName(String name) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
-            return session.createQuery("select c from Company c where c.name = :name", Company.class)
+            return session.createQuery("select c from Client c where c.name = :name", Client.class)
                           .setParameter("name", name)
                           .getSingleResult();
         }
     }
 
-    public static boolean doesCompanyExistByName(String name) {
+    public static boolean doesClientExistByName(String name) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
-            Company company = session.createQuery("select c from Company c where c.name = :name", Company.class)
-                                     .setParameter("name", name)
-                                     .getSingleResultOrNull();
-            return company != null;
+            Client client = session.createQuery("select c from Client c where c.name = :name", Client.class)
+                                   .setParameter("name", name)
+                                   .getSingleResultOrNull();
+            return client != null;
         }
     }
 
-    public static List<Company> getCompanies() {
+    public static List<Client> getCompanies() {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
-            return session.createQuery("from Company", Company.class).getResultList();
+            return session.createQuery("from Client", Client.class).getResultList();
         }
     }
 
-    public static void deleteCompanyByName(String companyName) {
+    public static void deleteClientByName(String clientName) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
-            session.createQuery("delete from Company where name = :name")
-                   .setParameter("name", companyName)
+            session.createQuery("delete from Client where name = :name")
+                   .setParameter("name", clientName)
                    .executeUpdate();
             session.getTransaction().commit();
         }

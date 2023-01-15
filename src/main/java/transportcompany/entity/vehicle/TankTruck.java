@@ -2,6 +2,7 @@ package transportcompany.entity.vehicle;
 
 import jakarta.persistence.*;
 import lombok.*;
+import transportcompany.entity.Company;
 
 @Entity
 @DiscriminatorValue("tankTruck")
@@ -10,4 +11,13 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 public class TankTruck extends Vehicle {
+
+    @Column(name = "max_liters_capacity", nullable = false)
+    private int maxLitersCapacity;
+
+    public TankTruck(String licencePlate, Company company, int maxLitersCapacity) {
+        super(licencePlate, company);
+        this.maxLitersCapacity = maxLitersCapacity;
+    }
+
 }

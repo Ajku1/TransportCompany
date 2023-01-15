@@ -37,7 +37,10 @@ public class SessionFactoryUtil {
     }
 
     public static void closeSessionFactory() {
-        sessionFactory.close();
+        if (sessionFactory != null && !sessionFactory.isClosed()) {
+            sessionFactory.close();
+            sessionFactory = null;
+        }
     }
 
 }
