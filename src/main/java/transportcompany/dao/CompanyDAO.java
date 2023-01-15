@@ -58,7 +58,7 @@ public class CompanyDAO {
     public static void deleteCompanyByName(String companyName) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
-            session.createQuery("delete from Company where name = :name")
+            session.createMutationQuery("delete from Company where name = :name")
                    .setParameter("name", companyName)
                    .executeUpdate();
             session.getTransaction().commit();

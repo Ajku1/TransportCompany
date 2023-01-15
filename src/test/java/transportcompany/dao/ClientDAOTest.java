@@ -12,7 +12,7 @@ class ClientDAOTest extends UnitTest {
 
     @BeforeEach
     void beforeEach() {
-        String companyName ="Employee Company";
+        String companyName = "Employee Company";
         CompanyDAO.saveCompany(new Company(companyName));
         company = CompanyDAO.getCompanyByName(companyName);
     }
@@ -32,8 +32,9 @@ class ClientDAOTest extends UnitTest {
         String clientName = "Client to update";
         Client client = new Client(clientName, company);
         ClientDAO.saveClient(client);
+        Client clientToUpdate = ClientDAO.getClientByName(clientName);
         String newClientName = "Updated Client";
-        Client clientToUpdate = new Client(newClientName, company);
+        clientToUpdate.setName(newClientName);
 
         ClientDAO.updateClient(clientToUpdate);
 

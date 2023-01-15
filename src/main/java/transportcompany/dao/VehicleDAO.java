@@ -1,7 +1,5 @@
 package transportcompany.dao;
 
-import java.util.List;
-
 import org.hibernate.*;
 import transportcompany.configuration.SessionFactoryUtil;
 import transportcompany.entity.vehicle.Vehicle;
@@ -49,16 +47,10 @@ public class VehicleDAO {
         }
     }
 
-    public static List<Vehicle> getCompanies() {
-        try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
-            return session.createQuery("from Vehicle", Vehicle.class).getResultList();
-        }
-    }
-
     public static void deleteVehicleByLicencePlate(String licencePlate) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
-            session.createQuery("delete from Vehicle where licencePlate = :licencePlate")
+            session.createMutationQuery("delete from Vehicle where licencePlate = :licencePlate")
                    .setParameter("licencePlate", licencePlate).executeUpdate();
             session.getTransaction().commit();
         }

@@ -1,7 +1,5 @@
 package transportcompany.dao;
 
-import java.util.List;
-
 import org.hibernate.*;
 import transportcompany.configuration.SessionFactoryUtil;
 import transportcompany.entity.person.Client;
@@ -24,14 +22,6 @@ public class ClientDAO {
         }
     }
 
-    public static Client getClientById(long id) {
-        try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
-            return session.createQuery("select c from Client c where c.id = :id", Client.class)
-                          .setParameter("id", id)
-                          .getSingleResult();
-        }
-    }
-
     public static Client getClientByName(String name) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             return session.createQuery("select c from Client c where c.name = :name", Client.class)
@@ -49,16 +39,10 @@ public class ClientDAO {
         }
     }
 
-    public static List<Client> getCompanies() {
-        try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
-            return session.createQuery("from Client", Client.class).getResultList();
-        }
-    }
-
     public static void deleteClientByName(String clientName) {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
-            session.createQuery("delete from Client where name = :name")
+            session.createMutationQuery("delete from Client where name = :name")
                    .setParameter("name", clientName)
                    .executeUpdate();
             session.getTransaction().commit();
