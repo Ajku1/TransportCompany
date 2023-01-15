@@ -7,7 +7,7 @@ import transportcompany.entity.Company;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CompanyDAOTest {
+class CompanyDAOTest extends UnitTest {
 
     @Test
     void saveCompany() {

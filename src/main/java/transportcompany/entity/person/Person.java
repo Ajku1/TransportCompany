@@ -2,6 +2,7 @@ package transportcompany.entity.person;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import lombok.*;
 import transportcompany.entity.*;
 
 import static jakarta.persistence.DiscriminatorType.STRING;
@@ -10,6 +11,10 @@ import static jakarta.persistence.DiscriminatorType.STRING;
 @Inheritance
 @DiscriminatorColumn(name="DISC", discriminatorType=STRING, length=20)
 @Table(name = "people")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public abstract class Person extends EntityWithId {
 
     @NotBlank(message = "Person name cannot be blank!")
