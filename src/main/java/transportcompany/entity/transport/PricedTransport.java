@@ -13,16 +13,19 @@ import transportcompany.entity.person.Client;
 @ToString
 public class PricedTransport extends EntityWithId {
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "transport_id")
     private Transport transport;
 
     @Column(name = "price", nullable = false)
     private double price;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "client_id")
     private Client client;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "company_id")
     private Company company;
 
 }

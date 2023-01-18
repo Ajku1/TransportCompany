@@ -51,7 +51,7 @@ public class CompanyDAO {
 
     public static List<Company> getCompanies() {
         try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
-            return session.createQuery("from Company", Company.class).getResultList();
+            return session.createQuery("select c from Company c", Company.class).getResultList();
         }
     }
 

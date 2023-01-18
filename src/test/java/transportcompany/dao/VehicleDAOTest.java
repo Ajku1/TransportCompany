@@ -34,7 +34,7 @@ class VehicleDAOTest extends UnitTest {
         VehicleDAO.saveVehicle(vehicle);
         String newVehicleLicencePlate = "A0000CC";
         Vehicle vehicleToUpdate = VehicleDAO.getVehicleByLicencePlate(vehicleLicencePlate);
-
+        vehicleToUpdate.setLicencePlate(newVehicleLicencePlate);
         VehicleDAO.updateVehicle(vehicleToUpdate);
 
         assertTrue(VehicleDAO.doesVehicleExistByLicencePlate(newVehicleLicencePlate));

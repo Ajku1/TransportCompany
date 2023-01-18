@@ -1,13 +1,7 @@
 package org.example;
 
-import java.time.LocalDate;
-import java.util.List;
-
-import org.hibernate.Session;
-import transportcompany.configuration.SessionFactoryUtil;
 import transportcompany.dao.CompanyDAO;
 import transportcompany.entity.Company;
-import transportcompany.entity.person.Employee;
 
 public class Main {
 

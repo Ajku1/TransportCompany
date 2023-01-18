@@ -16,11 +16,14 @@ import transportcompany.entity.person.Employee;
 @ToString
 public class Qualification extends EntityWithId {
 
-    @Column(name = "qualificationType", nullable = false)
     @Enumerated(EnumType.STRING)
+    @Column(name = "qualificationType", nullable = false)
     private QualificationType qualificationType;
 
     @ManyToMany
+    @JoinTable(name = "qualifications_people",
+            joinColumns = @JoinColumn(name = "qualifications_id"),
+            inverseJoinColumns = @JoinColumn(name = "employees_id"))
     private Set<Employee> employees;
 
 }

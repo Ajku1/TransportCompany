@@ -12,7 +12,7 @@ import transportcompany.entity.Company;
 @ToString
 public class Bus extends Vehicle {
 
-    @Column(name = "people_capacity", nullable = false)
+    @Column(name = "people_capacity")
     private int peopleCapacity;
 
     public Bus(String licencePlate, Company company, int peopleCapacity) {

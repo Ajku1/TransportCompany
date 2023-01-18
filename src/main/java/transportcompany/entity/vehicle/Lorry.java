@@ -12,7 +12,7 @@ import transportcompany.entity.Company;
 @ToString
 public class Lorry extends Vehicle {
 
-    @Column(name = "max_weight", nullable = false)
+    @Column(name = "max_weight")
     private int maxWeight;
 
     public Lorry(String licencePlate, Company company, int maxWeight) {

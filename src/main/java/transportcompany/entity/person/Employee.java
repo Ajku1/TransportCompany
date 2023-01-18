@@ -20,6 +20,7 @@ public class Employee extends Person {
     private LocalDate birthDate;
 
     @Formula(value = "YEAR(GETDATE())-YEAR(birth_date)")
+    @Column(name = "age")
     private int age;
 
     @ManyToMany(mappedBy = "employees")

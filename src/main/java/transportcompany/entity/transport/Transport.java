@@ -27,6 +27,7 @@ public class Transport extends EntityWithId {
     @Column(name = "arrivalDate", nullable = false)
     private LocalDate arrivalDate;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "transportType", nullable = false)
     private TransportType transportType;
 

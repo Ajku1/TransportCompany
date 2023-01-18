@@ -5,12 +5,9 @@ import java.util.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
-import org.hibernate.annotations.Cascade;
 import transportcompany.entity.person.*;
 import transportcompany.entity.transport.PricedTransport;
 import transportcompany.entity.vehicle.Vehicle;
-
-import static org.hibernate.annotations.CascadeType.*;
 
 @Entity
 @Table(name = "companies", uniqueConstraints = @UniqueConstraint(columnNames = { "name" }))
@@ -26,8 +23,7 @@ public class Company extends EntityWithId {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "company", fetch = FetchType.EAGER)
-    @Cascade(ALL)
+    @OneToMany(mappedBy = "company", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<Employee> employees = new ArrayList<>();
 
     @OneToMany(mappedBy = "company", fetch = FetchType.EAGER)

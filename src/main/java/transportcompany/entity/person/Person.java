@@ -23,7 +23,8 @@ public abstract class Person extends EntityWithId {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "company_id",referencedColumnName = "id")
     private Company company;
 
 }

@@ -14,7 +14,7 @@ class EmployeeDAOTest extends UnitTest {
 
     @BeforeEach
     void beforeEach() {
-        String companyName ="Employee Company";
+        String companyName = "Employee Company";
         CompanyDAO.saveCompany(new Company(companyName));
         company = CompanyDAO.getCompanyByName(companyName);
     }
@@ -37,7 +37,6 @@ class EmployeeDAOTest extends UnitTest {
         Employee employeeToUpdate = EmployeeDAO.getEmployeeByName(employeeName);
         String newEmployeeName = "Updated Employee";
         employeeToUpdate.setName(newEmployeeName);
-
         EmployeeDAO.updateEmployee(employeeToUpdate);
 
         assertTrue(EmployeeDAO.doesEmployeeExistByName(newEmployeeName));

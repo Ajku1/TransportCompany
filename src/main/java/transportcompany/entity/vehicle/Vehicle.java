@@ -19,7 +19,8 @@ public abstract class Vehicle extends EntityWithId {
     @Column(name = "licence_plate", nullable = false)
     private String licencePlate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name = "company_id")
     private Company company;
 
 }
