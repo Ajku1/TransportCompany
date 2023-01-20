@@ -13,8 +13,8 @@ public class InquiryDAO {
 
         return companies
             .stream()
-            .flatMap(company -> company.getTransports().stream())
-            .count();
+            .mapToLong(company -> company.getTransports().size())
+            .sum();
     }
 
     public static double getTotalShipmentsPrice() {
