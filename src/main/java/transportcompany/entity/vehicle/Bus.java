@@ -20,4 +20,11 @@ public class Bus extends Vehicle {
         this.peopleCapacity = peopleCapacity;
     }
 
+    public void setPeopleCapacity(int peopleCapacity) {
+        if(peopleCapacity <= 0) {
+            throw new IllegalArgumentException("Bus cannot have a negative or zero capacity.");
+        }
+        this.peopleCapacity = peopleCapacity;
+    }
+
 }
