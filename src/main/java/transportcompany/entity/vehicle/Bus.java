@@ -1,6 +1,7 @@
 package transportcompany.entity.vehicle;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Positive;
 import lombok.*;
 import transportcompany.entity.Company;
 
@@ -13,6 +14,7 @@ import transportcompany.entity.Company;
 public class Bus extends Vehicle {
 
     @Column(name = "people_capacity")
+    @Positive
     private int peopleCapacity;
 
     public Bus(String licencePlate, Company company, int peopleCapacity) {

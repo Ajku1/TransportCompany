@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.*;
 import lombok.experimental.FieldNameConstants;
 import org.hibernate.annotations.Formula;
@@ -23,9 +24,11 @@ public class Employee extends Person {
 
     @Formula(value = "YEAR(GETDATE())-YEAR(birth_date)")
     @Column(name = "age")
+    @Min(18)
     private int age;
 
     @Column(name = "salary")
+    @Positive
     private double salary;
 
     @ManyToMany(mappedBy = "employees")
@@ -49,6 +52,13 @@ public class Employee extends Person {
         super(name, company);
         this.birthDate = birthDate;
         this.salary = salary;
+    }
+
+    public void setAge(int age) {
+        if (age < 18) {
+            throw new IllegalArgumentException("Drivers cannot be less than 18 years of age.");
+        }
+        this.age = age;
     }
 
     public void setSalary(double salary) {
