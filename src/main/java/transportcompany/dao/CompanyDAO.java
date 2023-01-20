@@ -2,6 +2,7 @@ package transportcompany.dao;
 
 import java.util.List;
 
+import jakarta.persistence.criteria.*;
 import org.hibernate.*;
 import transportcompany.configuration.SessionFactoryUtil;
 import transportcompany.entity.Company;
@@ -62,6 +63,21 @@ public class CompanyDAO {
                    .setParameter("name", companyName)
                    .executeUpdate();
             session.getTransaction().commit();
+        }
+    }
+
+    public static List<Company> sortTransportCompaniesByNameThenIncome() {
+        try (Session session = SessionFactoryUtil.getSessionFactory().openSession()) {
+            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            CriteriaQuery<Company> criteriaQuery = criteriaBuilder.createQuery(Company.class);
+            Root<Company> root = criteriaQuery.from(Company.class);
+            criteriaQuery
+                .select(root)
+                .orderBy(
+                    criteriaBuilder.asc(root.get(Company.Fields.name)),
+                    criteriaBuilder.asc(root.get(Company.Fields.income))
+                        );
+            return session.createQuery(criteriaQuery).getResultList();
         }
     }
 

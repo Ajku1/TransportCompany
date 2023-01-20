@@ -5,6 +5,7 @@ import java.util.*;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.FieldNameConstants;
 import org.hibernate.annotations.Formula;
 import transportcompany.entity.Company;
 import transportcompany.entity.qualification.Qualification;
@@ -14,6 +15,7 @@ import transportcompany.entity.qualification.Qualification;
 @Getter
 @Setter
 @NoArgsConstructor
+@FieldNameConstants
 public class Employee extends Person {
 
     @Column(name = "birth_date")
@@ -23,23 +25,37 @@ public class Employee extends Person {
     @Column(name = "age")
     private int age;
 
+    @Column(name = "salary")
+    private double salary;
+
     @ManyToMany(mappedBy = "employees")
     private List<Qualification> qualifications = new ArrayList<>();
 
     public Employee(String name,
                     Company company,
                     LocalDate birthDate,
+                    double salary,
                     List<Qualification> qualifications) {
         super(name, company);
         this.birthDate = birthDate;
+        this.salary = salary;
         this.qualifications = qualifications;
     }
 
     public Employee(String name,
                     Company company,
-                    LocalDate birthDate) {
+                    LocalDate birthDate,
+                    double salary) {
         super(name, company);
         this.birthDate = birthDate;
+        this.salary = salary;
+    }
+
+    public void setSalary(double salary) {
+        if (salary <= 0) {
+            throw new IllegalArgumentException("Salary must be a positive number");
+        }
+        this.salary = salary;
     }
 
 }

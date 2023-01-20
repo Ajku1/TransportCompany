@@ -22,7 +22,7 @@ class EmployeeDAOTest extends UnitTest {
     @Test
     void saveEmployee() {
         String employeeName = "Employee to save";
-        Employee employee = new Employee(employeeName, company, LocalDate.of(1990, 1, 12));
+        Employee employee = new Employee(employeeName, company, LocalDate.of(1990, 1, 12), 2000);
 
         EmployeeDAO.saveEmployee(employee);
 
@@ -32,7 +32,7 @@ class EmployeeDAOTest extends UnitTest {
     @Test
     void updateEmployee() {
         String employeeName = "Employee to update";
-        Employee employee = new Employee(employeeName, company, LocalDate.of(1990, 1, 12));
+        Employee employee = new Employee(employeeName, company, LocalDate.of(1990, 1, 12), 3000);
         EmployeeDAO.saveEmployee(employee);
         Employee employeeToUpdate = EmployeeDAO.getEmployeeByName(employeeName);
         String newEmployeeName = "Updated Employee";
@@ -44,7 +44,7 @@ class EmployeeDAOTest extends UnitTest {
 
     @Test
     void deleteEmployee() {
-        Employee employee = new Employee("Name", company, LocalDate.of(1990, 1, 12));
+        Employee employee = new Employee("Name", company, LocalDate.of(1990, 1, 12), 4000);
         EmployeeDAO.saveEmployee(employee);
         Employee employeeToDelete = EmployeeDAO.getEmployeeByName(employee.getName());
 

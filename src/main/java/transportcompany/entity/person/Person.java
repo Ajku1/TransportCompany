@@ -9,7 +9,7 @@ import static jakarta.persistence.DiscriminatorType.STRING;
 
 @Entity
 @Inheritance
-@DiscriminatorColumn(name="DISC", discriminatorType=STRING, length=20)
+@DiscriminatorColumn(name = "DISC", discriminatorType = STRING, length = 20)
 @Table(name = "people")
 @Getter
 @Setter
@@ -24,7 +24,20 @@ public abstract class Person extends EntityWithId {
     private String name;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "company_id",referencedColumnName = "id")
+    @JoinColumn(name = "company_id", referencedColumnName = "id")
     private Company company;
+
+    public void setName(String name) {
+        if (name.isBlank()) {
+            throw new IllegalArgumentException("Person name cannot be empty");
+        }
+        if (name.length() > 20) {
+            throw new IllegalArgumentException("Name cannot be longer than 20 characters.");
+        }
+        if (!Character.isUpperCase(name.charAt(0))) {
+            throw new IllegalArgumentException("Name must start with an uppercase character.");
+        }
+        this.name = name;
+    }
 
 }
